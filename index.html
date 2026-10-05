@@ -57,10 +57,16 @@
     }
 
     .topbar {
-      position: absolute;
+      position: fixed;
       z-index: 5;
       inset: 0 0 auto;
       color: var(--white);
+      transition: background 180ms ease, box-shadow 180ms ease;
+    }
+
+    .topbar.is-scrolled {
+      background: var(--ink);
+      box-shadow: 0 4px 18px rgb(0 0 0 / 14%);
     }
 
     .nav {
@@ -617,6 +623,33 @@
       gap: 18px;
     }
 
+    .back-to-top {
+      position: fixed;
+      z-index: 6;
+      right: 24px;
+      bottom: 24px;
+      display: none;
+      width: 48px;
+      aspect-ratio: 1;
+      place-items: center;
+      border: 1px solid var(--ink);
+      background: var(--lime);
+      color: var(--ink);
+      font-size: 26px;
+      line-height: 1;
+      text-decoration: none;
+    }
+
+    .back-to-top.is-visible {
+      display: grid;
+      pointer-events: auto;
+    }
+
+    .back-to-top:hover,
+    .back-to-top:focus-visible {
+      background: var(--white);
+    }
+
     .reveal {
       animation: enter 650ms cubic-bezier(.2,.75,.25,1) both;
       animation-timeline: view();
@@ -652,6 +685,12 @@
 
       .nav {
         min-height: 72px;
+      }
+
+      .back-to-top {
+        right: 16px;
+        bottom: 16px;
+        width: 44px;
       }
 
       .nav-links {
@@ -943,9 +982,24 @@
       </div>
     </div>
   </footer>
+  <a class="back-to-top" id="back-to-top" href="#top" aria-label="Back to top" title="Back to top">↑</a>
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    const topbar = document.querySelector(".topbar");
+    const backToTop = document.getElementById("back-to-top");
+    const updateScrollControls = () => {
+      const hasScrolled = window.scrollY > 180;
+      topbar.classList.toggle("is-scrolled", hasScrolled);
+      backToTop.classList.toggle("is-visible", hasScrolled);
+    };
+    window.addEventListener("scroll", updateScrollControls, { passive: true });
+    updateScrollControls();
+    backToTop.addEventListener("click", event => {
+      event.preventDefault();
+      window.scrollTo({ top: 0, behavior: "instant" });
+    });
 
     const inquiryDialog = document.getElementById("inquiry-dialog");
     const closeInquiryForm = document.getElementById("close-inquiry-form");
