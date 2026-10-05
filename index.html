@@ -1,0 +1,981 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f3ed">
+  <meta name="description" content="A&B Innovations builds thoughtful websites and Android apps that help businesses move forward.">
+  <title>A&B Innovations | Digital experiences that move you forward</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+      --paper: #f4f3ed;
+      --ink: #20231f;
+      --muted: #6a6e67;
+      --line: #d8d9d0;
+      --lime: #c8f169;
+      --orange: #ed7951;
+      --white: #fffefa;
+      --mono: "DM Mono", monospace;
+      --sans: "Manrope", sans-serif;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 88px;
+    }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--sans);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .wrap {
+      width: min(1200px, calc(100% - 64px));
+      margin-inline: auto;
+    }
+
+    .topbar {
+      position: absolute;
+      z-index: 5;
+      inset: 0 0 auto;
+      color: var(--white);
+    }
+
+    .nav {
+      min-height: 86px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgb(255 255 255 / 28%);
+    }
+
+    .wordmark {
+      display: inline-flex;
+      align-items: center;
+      gap: 11px;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .mark {
+      display: grid;
+      width: 38px;
+      aspect-ratio: 1;
+      place-items: center;
+      background: var(--lime);
+      color: var(--ink);
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: -1px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 34px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      transition: color 180ms ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a:focus-visible {
+      color: var(--lime);
+    }
+
+    .nav-links .nav-cta {
+      padding: 12px 16px;
+      border: 1px solid rgb(255 255 255 / 60%);
+    }
+
+    .hero {
+      position: relative;
+      isolation: isolate;
+      display: flex;
+      min-height: min(760px, 84vh);
+      align-items: center;
+      overflow: hidden;
+      background: #26312d;
+      color: var(--white);
+    }
+
+    .hero-image,
+    .hero-shade {
+      position: absolute;
+      z-index: -1;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .hero-image {
+      object-fit: cover;
+      object-position: center 48%;
+    }
+
+    .hero-shade {
+      background: rgb(19 26 23 / 62%);
+    }
+
+    .hero-content {
+      padding-top: 100px;
+      padding-bottom: 64px;
+      animation: enter 700ms cubic-bezier(.2,.75,.25,1) both;
+    }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 28px;
+      font: 11px var(--mono);
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      width: 25px;
+      height: 2px;
+      background: var(--lime);
+      content: "";
+    }
+
+    .hero h1 {
+      max-width: 850px;
+      margin: 0;
+      font-size: clamp(56px, 9vw, 112px);
+      line-height: .96;
+      letter-spacing: -5px;
+      font-weight: 700;
+    }
+
+    .hero h1 span {
+      color: var(--lime);
+    }
+
+    .hero-copy {
+      max-width: 520px;
+      margin: 28px 0 0;
+      color: rgb(255 254 250 / 84%);
+      font-size: 16px;
+      line-height: 1.75;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 34px;
+    }
+
+    .button {
+      display: inline-flex;
+      min-height: 48px;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      padding: 0 18px;
+      border: 1px solid transparent;
+      background: var(--lime);
+      color: var(--ink);
+      font-size: 12px;
+      font-weight: 800;
+      text-decoration: none;
+      transition: background 180ms ease, transform 180ms ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      background: #d6ff86;
+    }
+
+    .button .arrow {
+      font-size: 18px;
+      line-height: 1;
+    }
+
+    .button-quiet {
+      border-color: rgb(255 255 255 / 56%);
+      background: transparent;
+      color: var(--white);
+    }
+
+    .button-quiet:hover {
+      background: rgb(255 255 255 / 12%);
+    }
+
+    .hero-note {
+      position: absolute;
+      right: max(32px, calc((100% - 1200px) / 2));
+      bottom: 38px;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      color: rgb(255 255 255 / 78%);
+      font: 10px var(--mono);
+      text-transform: uppercase;
+    }
+
+    .hero-note span {
+      width: 7px;
+      height: 7px;
+      background: var(--lime);
+      border-radius: 50%;
+    }
+
+    .intro {
+      display: grid;
+      grid-template-columns: .75fr 1.25fr;
+      gap: 70px;
+      padding-top: 108px;
+      padding-bottom: 108px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .section-label {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font: 11px var(--mono);
+      text-transform: uppercase;
+    }
+
+    .intro h2 {
+      max-width: 740px;
+      margin: 0;
+      font-size: clamp(32px, 4.3vw, 58px);
+      line-height: 1.12;
+      letter-spacing: 0;
+      font-weight: 600;
+    }
+
+    .intro h2 em {
+      color: #68852f;
+      font-style: normal;
+    }
+
+    .intro-copy {
+      max-width: 590px;
+      margin: 22px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.85;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 36px;
+    }
+
+    .section-head .section-label {
+      margin-bottom: 13px;
+    }
+
+    .section-head h2 {
+      margin: 0;
+      font-size: clamp(34px, 5vw, 62px);
+      line-height: 1;
+      letter-spacing: -2px;
+      font-weight: 600;
+    }
+
+    .work {
+      padding-top: 96px;
+      padding-bottom: 104px;
+    }
+
+    .text-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding-bottom: 7px;
+      border-bottom: 1px solid var(--ink);
+      font-size: 12px;
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    .work-grid {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 22px;
+      align-items: start;
+    }
+
+    .project {
+      min-width: 0;
+    }
+
+    .project:nth-child(2) {
+      margin-top: 108px;
+    }
+
+    .project-image {
+      position: relative;
+      display: block;
+      width: 100%;
+      aspect-ratio: 1.37;
+      overflow: hidden;
+      background: #d8ddd3;
+    }
+
+    .project:nth-child(2) .project-image {
+      aspect-ratio: .94;
+    }
+
+    .project-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 500ms cubic-bezier(.2,.75,.25,1);
+    }
+
+    .project:hover .project-image img {
+      transform: scale(1.035);
+    }
+
+    .project-index {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      display: grid;
+      width: 42px;
+      aspect-ratio: 1;
+      place-items: center;
+      background: var(--lime);
+      font: 11px var(--mono);
+    }
+
+    .project-meta {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      margin-top: 17px;
+      color: var(--muted);
+      font: 10px var(--mono);
+      text-transform: uppercase;
+    }
+
+    .project h3 {
+      margin: 10px 0 0;
+      font-size: clamp(23px, 3vw, 34px);
+      line-height: 1.2;
+      letter-spacing: 0;
+      font-weight: 600;
+    }
+
+    .project p {
+      max-width: 510px;
+      margin: 9px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.75;
+    }
+
+    .services {
+      padding: 92px 0 102px;
+      background: #e8e9df;
+    }
+
+    .service-list {
+      border-top: 1px solid #c6c9be;
+    }
+
+    .service {
+      display: grid;
+      grid-template-columns: 70px 1fr 1fr 40px;
+      align-items: center;
+      gap: 22px;
+      padding: 25px 0;
+      border-bottom: 1px solid #c6c9be;
+    }
+
+    .service-num {
+      color: #74786f;
+      font: 11px var(--mono);
+    }
+
+    .service h3 {
+      margin: 0;
+      font-size: clamp(21px, 3vw, 32px);
+      font-weight: 600;
+      letter-spacing: 0;
+    }
+
+    .service p {
+      max-width: 370px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    .service-arrow {
+      justify-self: end;
+      color: #68852f;
+      font-size: 23px;
+    }
+
+    .about {
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: 74px;
+      padding-top: 108px;
+      padding-bottom: 108px;
+    }
+
+    .about-aside {
+      display: flex;
+      min-height: 300px;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 28px;
+      background: var(--orange);
+      color: #22231f;
+    }
+
+    .about-aside strong {
+      max-width: 350px;
+      font-size: clamp(27px, 4vw, 45px);
+      line-height: 1.1;
+      font-weight: 600;
+    }
+
+    .about-aside span {
+      font: 10px var(--mono);
+      text-transform: uppercase;
+    }
+
+    .about-content .section-label {
+      margin-bottom: 20px;
+    }
+
+    .about-content h2 {
+      margin: 0;
+      font-size: clamp(34px, 4.5vw, 58px);
+      line-height: 1.1;
+      letter-spacing: -2px;
+      font-weight: 600;
+    }
+
+    .about-content p {
+      max-width: 540px;
+      margin: 21px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.9;
+    }
+
+    .contact {
+      padding: 82px 0 70px;
+      background: var(--ink);
+      color: var(--white);
+    }
+
+    .contact-inner {
+      display: grid;
+      grid-template-columns: 1fr;
+      align-items: start;
+      gap: 48px;
+    }
+
+    .contact .section-label {
+      margin-bottom: 20px;
+      color: #c2c7bd;
+    }
+
+    .contact h2 {
+      max-width: 680px;
+      margin: 0;
+      font-size: clamp(42px, 7vw, 86px);
+      line-height: .99;
+      letter-spacing: -4px;
+      font-weight: 600;
+    }
+
+    .contact h2 span {
+      color: var(--lime);
+    }
+
+    .contact .button {
+      white-space: nowrap;
+    }
+
+    .contact .form-trigger {
+      margin-top: 24px;
+    }
+
+    .contact-copy {
+      max-width: 350px;
+      margin: 24px 0 0;
+      color: #c2c7bd;
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    .form-frame {
+      width: 100%;
+      height: 1760px;
+      border: 0;
+      background: var(--white);
+    }
+
+    .form-dialog {
+      width: min(760px, calc(100% - 32px));
+      max-width: none;
+      max-height: calc(100dvh - 32px);
+      padding: 0;
+      overflow-y: auto;
+      border: 0;
+      background: var(--white);
+      color: var(--ink);
+      overscroll-behavior: contain;
+    }
+
+    .form-dialog::backdrop {
+      background: rgb(17 20 18 / 78%);
+      backdrop-filter: blur(3px);
+    }
+
+    .form-dialog-header {
+      position: sticky;
+      z-index: 1;
+      top: 0;
+      display: flex;
+      min-height: 62px;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 16px 10px 20px;
+      border-bottom: 1px solid var(--line);
+      background: var(--white);
+    }
+
+    .form-dialog-header strong {
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .dialog-close {
+      display: grid;
+      width: 38px;
+      aspect-ratio: 1;
+      place-items: center;
+      border: 1px solid var(--line);
+      background: transparent;
+      color: var(--ink);
+      cursor: pointer;
+      font: 24px/1 var(--sans);
+    }
+
+    .dialog-close:hover {
+      background: #e8e9df;
+    }
+
+    footer {
+      padding: 20px 0;
+      background: var(--ink);
+      color: #c2c7bd;
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding-top: 19px;
+      border-top: 1px solid #464a44;
+      font: 10px var(--mono);
+    }
+
+    .footer-inner a {
+      text-decoration: none;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+    }
+
+    .reveal {
+      animation: enter 650ms cubic-bezier(.2,.75,.25,1) both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 24%;
+    }
+
+    @keyframes enter {
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .wrap {
+        width: min(100% - 40px, 560px);
+      }
+
+      .nav {
+        min-height: 72px;
+      }
+
+      .nav-links {
+        gap: 17px;
+        font-size: 11px;
+      }
+
+      .nav-links a:nth-child(2),
+      .nav-links a:nth-child(3) {
+        display: none;
+      }
+
+      .nav-links .nav-cta {
+        padding: 10px 12px;
+      }
+
+      .hero {
+        min-height: min(700px, 80vh);
+        min-height: min(700px, 80svh);
+      }
+
+      .hero-image {
+        object-position: 58% center;
+      }
+
+      .hero-content {
+        padding-top: 98px;
+        padding-bottom: 66px;
+      }
+
+      .hero h1 {
+        font-size: clamp(53px, 13vw, 82px);
+        letter-spacing: -3px;
+      }
+
+      .hero-copy {
+        max-width: 420px;
+        font-size: 14px;
+      }
+
+      .hero-note {
+        right: 20px;
+        bottom: 20px;
+      }
+
+      .intro,
+      .about {
+        grid-template-columns: 1fr;
+        gap: 27px;
+        padding-top: 72px;
+        padding-bottom: 72px;
+      }
+
+      .section-head {
+        align-items: start;
+        flex-direction: column;
+        margin-bottom: 27px;
+      }
+
+      .work {
+        padding-top: 72px;
+        padding-bottom: 76px;
+      }
+
+      .work-grid {
+        grid-template-columns: 1fr;
+        gap: 35px;
+      }
+
+      .project:nth-child(2) {
+        margin-top: 0;
+      }
+
+      .project:nth-child(2) .project-image {
+        aspect-ratio: 1.25;
+      }
+
+      .services {
+        padding: 70px 0 76px;
+      }
+
+      .service {
+        grid-template-columns: 35px 1fr 25px;
+        gap: 12px;
+        padding: 21px 0;
+      }
+
+      .service p {
+        grid-column: 2 / 3;
+      }
+
+      .service-arrow {
+        grid-column: 3;
+        grid-row: 1 / span 2;
+      }
+
+      .about-aside {
+        min-height: 240px;
+      }
+
+      .contact {
+        padding: 70px 0 52px;
+      }
+
+      .contact-inner {
+        grid-template-columns: 1fr;
+        align-items: start;
+        gap: 28px;
+      }
+
+      .form-dialog {
+        width: calc(100% - 24px);
+        max-height: calc(100dvh - 24px);
+      }
+
+      .form-frame {
+        height: 1840px;
+      }
+
+      .contact h2 {
+        letter-spacing: -2px;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .wrap {
+        width: calc(100% - 32px);
+      }
+
+      .wordmark {
+        gap: 8px;
+        font-size: 13px;
+      }
+
+      .mark {
+        width: 34px;
+      }
+
+      .nav-links {
+        gap: 10px;
+      }
+
+      .button {
+        gap: 11px;
+        padding-inline: 14px;
+        font-size: 11px;
+      }
+
+      .footer-inner {
+        align-items: start;
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <nav class="nav wrap" aria-label="Main navigation">
+      <a class="wordmark" href="#top" aria-label="A&B Innovations home">
+        <span class="mark" aria-hidden="true">A&B</span>
+        <span>A&B INNOVATIONS</span>
+      </a>
+      <div class="nav-links">
+        <a href="#work">Work</a>
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a class="nav-cta" href="#contact">Let's talk <span aria-hidden="true">↗</span></a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <img class="hero-image" src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&amp;fit=crop&amp;w=2400&amp;q=85" alt="A creative team collaborating around a table">
+      <div class="hero-shade" aria-hidden="true"></div>
+      <div class="hero-content wrap">
+        <p class="eyebrow">Independent digital studio · Web &amp; Android</p>
+        <h1 id="hero-title">A&amp;B<br><span>Innovations</span></h1>
+        <p class="hero-copy">We build thoughtful websites and Android apps that make good ideas easier to use, and businesses ready for what's next.</p>
+        <div class="actions">
+          <a class="button" href="#work">Explore our work <span class="arrow" aria-hidden="true">↘</span></a>
+          <a class="button button-quiet" href="#contact">Start a conversation <span class="arrow" aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+      <div class="hero-note"><span aria-hidden="true"></span>Built for what comes next</div>
+    </section>
+
+    <section class="intro wrap reveal" aria-labelledby="intro-title">
+      <p class="section-label">01 / What we do</p>
+      <div>
+        <h2 id="intro-title">Digital shouldn't feel complicated. It should feel <em>like progress.</em></h2>
+        <p class="intro-copy">From the first sketch to launch day, A&amp;B Innovations brings design and development together to make digital products clear, useful, and ready to grow.</p>
+      </div>
+    </section>
+
+    <section class="work wrap" id="work" aria-labelledby="work-title">
+      <div class="section-head reveal">
+        <div>
+          <p class="section-label">02 / Selected capabilities</p>
+          <h2 id="work-title">Work in focus</h2>
+        </div>
+        <a class="text-link" href="#contact">Have a project in mind? <span aria-hidden="true">↗</span></a>
+      </div>
+      <div class="work-grid">
+        <article class="project reveal">
+          <div class="project-image">
+            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&amp;fit=crop&amp;w=1400&amp;q=85" alt="Analytics dashboard displayed on a laptop" loading="lazy">
+            <span class="project-index">01</span>
+          </div>
+          <div class="project-meta"><span>Web development</span><span>Strategy · Design · Build</span></div>
+          <h3>Websites made to move business forward.</h3>
+          <p>Clear, considered websites that bring a brand to life and make the next step easy for every visitor.</p>
+        </article>
+        <article class="project reveal">
+          <div class="project-image">
+            <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&amp;fit=crop&amp;w=1200&amp;q=85" alt="Smartphone used as a mobile app mockup" loading="lazy">
+            <span class="project-index">02</span>
+          </div>
+          <div class="project-meta"><span>Android development</span><span>Product · Engineering</span></div>
+          <h3>Mobile experiences made for real life.</h3>
+          <p>Useful Android apps, shaped around the people who rely on them and the work they need to get done.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="services" id="services" aria-labelledby="services-title">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div>
+            <p class="section-label">03 / How we help</p>
+            <h2 id="services-title">Good ideas, built right.</h2>
+          </div>
+        </div>
+        <div class="service-list">
+          <article class="service reveal">
+            <span class="service-num">01</span>
+            <h3>Websites &amp; platforms</h3>
+            <p>Responsive websites and web applications designed around your audience and your goals.</p>
+            <span class="service-arrow" aria-hidden="true">↗</span>
+          </article>
+          <article class="service reveal">
+            <span class="service-num">02</span>
+            <h3>Android applications</h3>
+            <p>Native mobile experiences that feel natural to use, from first tap through everyday use.</p>
+            <span class="service-arrow" aria-hidden="true">↗</span>
+          </article>
+          <article class="service reveal">
+            <span class="service-num">03</span>
+            <h3>Product design &amp; build</h3>
+            <p>Practical product thinking, interface design, and development that take an idea to launch.</p>
+            <span class="service-arrow" aria-hidden="true">↗</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="about wrap" id="about" aria-labelledby="about-title">
+      <div class="about-aside reveal">
+        <strong>Small details. Big difference.</strong>
+        <span>A&amp;B Innovations · Digital studio</span>
+      </div>
+      <div class="about-content reveal">
+        <p class="section-label">04 / A little about us</p>
+        <h2 id="about-title">Built with care.<br>Made to work.</h2>
+        <p>We are a digital development studio focused on websites and Android applications. We pair thoughtful design with dependable engineering to create experiences people enjoy using and teams can grow with.</p>
+        <p>Good collaboration starts with listening. We keep the process clear, the communication open, and the work grounded in what your business actually needs.</p>
+      </div>
+    </section>
+
+    <section class="contact" id="contact" aria-labelledby="contact-title">
+      <div class="contact-inner wrap reveal">
+        <div>
+          <p class="section-label">05 / Your next idea</p>
+          <h2 id="contact-title">Let's make<br><span>it happen.</span></h2>
+          <p class="contact-copy">Tell us a little about what you're building. We'll be in touch to take it from there.</p>
+          <button class="button form-trigger" id="open-inquiry-form" type="button">Contact Us <span class="arrow" aria-hidden="true">↗</span></button>
+        </div>
+      </div>
+    </section>
+    <dialog class="form-dialog" id="inquiry-dialog" aria-labelledby="inquiry-dialog-title">
+      <div class="form-dialog-header">
+        <strong id="inquiry-dialog-title">Project inquiry</strong>
+        <button class="dialog-close" id="close-inquiry-form" type="button" aria-label="Close inquiry form">&times;</button>
+      </div>
+      <iframe class="form-frame" src="https://docs.google.com/forms/d/e/1FAIpQLSfDM0L-l-ht5se1O42DrArEUOVJZiuJr_FRf_rWQIKp5n4MDQ/viewform?embedded=true" title="A&amp;B Innovations project inquiry form" loading="lazy">Loading the inquiry form…</iframe>
+    </dialog>
+  </main>
+
+  <footer>
+    <div class="footer-inner wrap">
+      <span>© <span id="year">2026</span> A&amp;B Innovations</span>
+      <div class="footer-links">
+        <a href="#top">Back to top ↑</a>
+        <span>Web · Android · Ideas</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    const inquiryDialog = document.getElementById("inquiry-dialog");
+    const closeInquiryForm = document.getElementById("close-inquiry-form");
+    document.getElementById("open-inquiry-form").addEventListener("click", () => {
+      inquiryDialog.showModal();
+      closeInquiryForm.focus({ preventScroll: true });
+    });
+    closeInquiryForm.addEventListener("click", () => inquiryDialog.close());
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape" && inquiryDialog.open) inquiryDialog.close();
+    });
+    inquiryDialog.addEventListener("click", event => {
+      if (event.target === inquiryDialog) inquiryDialog.close();
+    });
+  </script>
+</body>
+</html>
