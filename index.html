@@ -74,23 +74,13 @@
     .wordmark {
       display: inline-flex;
       align-items: center;
-      gap: 11px;
       text-decoration: none;
-      font-size: 15px;
-      font-weight: 800;
-      letter-spacing: 0;
     }
 
-    .mark {
-      display: grid;
-      width: 38px;
-      aspect-ratio: 1;
-      place-items: center;
-      background: var(--lime);
-      color: var(--ink);
-      font-size: 15px;
-      font-weight: 800;
-      letter-spacing: -1px;
+    .wordmark img {
+      display: block;
+      width: 150px;
+      height: auto;
     }
 
     .nav-links {
@@ -791,13 +781,8 @@
         width: calc(100% - 32px);
       }
 
-      .wordmark {
-        gap: 8px;
-        font-size: 13px;
-      }
-
-      .mark {
-        width: 34px;
+      .wordmark img {
+        width: 124px;
       }
 
       .nav-links {
@@ -821,8 +806,7 @@
   <header class="topbar">
     <nav class="nav wrap" aria-label="Main navigation">
       <a class="wordmark" href="#top" aria-label="A&B Innovations home">
-        <span class="mark" aria-hidden="true">A&B</span>
-        <span>A&B INNOVATIONS</span>
+      <img src="logo.svg" alt="A&amp;B Innovations">
       </a>
       <div class="nav-links">
         <a href="#work">Work</a>

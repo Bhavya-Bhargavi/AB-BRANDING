@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 300" role="img" aria-labelledby="title description">
+  <title id="title">A&amp;B Innovations</title>
+  <desc id="description">Navy A and B with an orange ampersand and sweeping orange underline, above the word Innovations.</desc>
+  <rect width="720" height="300" fill="#fffefa"/>
+  <path d="M92 218 250 34l128 184M172 126h144" fill="none" stroke="#06417f" stroke-linecap="square" stroke-linejoin="miter" stroke-width="42"/>
+  <path d="M450 56h102c62 0 65 73 0 82 78 0 78 80 0 80H450z" fill="#06417f"/>
+  <path d="M484 89h63c28 0 28 34 0 34h-63zm0 75h66c30 0 30 35 0 35h-66z" fill="#fffefa"/>
+  <text x="374" y="178" fill="#f18300" font-family="Manrope, Arial, sans-serif" font-size="112" font-weight="800" text-anchor="middle">&amp;</text>
+  <path d="M77 226c116-110 189-132 262-132-76 36-116 63-181 109 167-35 344-43 500-33l-25 19 24 0-37 24 8-22c-180-8-362 7-551 24z" fill="#f58200"/>
+  <text x="360" y="284" fill="#092c5f" font-family="Manrope, Arial, sans-serif" font-size="51" font-weight="800" letter-spacing="8" text-anchor="middle">INNOVATIONS</text>
+</svg>
